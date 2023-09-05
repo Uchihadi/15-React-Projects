@@ -1,7 +1,7 @@
 import React from 'react';
 import Tour from './Tour';
 
-const Tours = ( {tours} ) => {
+const Tours = ({ tours, removeTour }) => {
   return (
     <section>
     <div className='title'>
@@ -10,12 +10,13 @@ const Tours = ( {tours} ) => {
     </div>
     <div>
       {tours.map((tour) => {
-        return <Tour key = {tour.id}></Tour>
+        return <Tour key = {tour.id} {... //Fetches the Tour JSON values to be displayed in the React Page
+          tour}
+          removeTour = {removeTour}></Tour>;
       })}
     </div>
     </section>
   );
-  
 };
 
 export default Tours;

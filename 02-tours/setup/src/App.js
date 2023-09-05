@@ -10,15 +10,20 @@ function App() {
   const [loading, setLoading] = useState(true); //Initialise loading as True
   const [tours, setTours] = useState([]); // Initialise tours
 
+  const removeTour = (id) => {
+    const newTours = tours.filter((tour) => tour.id !== id);
+    setTours(newTours)
+  }
+
   const fetchTours = async () => {
     setLoading(true); //the fetchTours will set loading as always true
 
     try {
-    const response = await fetch(url); // Fetching data from the URL
-    const tours = await response.json(); //Response in JSON format
-    console.log(tours) //console log returns the JSON data from the url
-    setLoading(false);
-    setTours(tours);
+      const response = await fetch(url); // Fetching data from the URL
+      const tours = await response.json(); //Response in JSON format
+      console.log(tours) //console log returns the JSON data from the url
+      setLoading(false);
+      setTours(tours);
     } catch (error) {
       setLoading(false);
       console.log(error);
@@ -39,7 +44,7 @@ function App() {
   } else {
     return (
       <main>
-        <Tours tours = {tours}/>
+        <Tours tours = {tours} removeTour = {removeTour}/>
       </main>
     ) 
   }
